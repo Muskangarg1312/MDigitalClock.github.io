@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>MDigitalClock</title>
+	<style>
+		body{
+			background-color: black;
+		}
+		.Clock{
+			position: absolute;
+			color: hotpink;
+			top: 50%; /*to make it center*/
+			left: 50%; /*to make it center*/
+			transform: translateX(-50%) translateY(-50%);
+			font-size: 60px;
+			font-family: Orbitron;
+			letter-spacing: 7px;
+		}
+	</style>
+</head>
+<body>
+<div id="DigitalClock" class="Clock"></div>
+<script type="text/javascript">
+
+	//we are creating this function to make it call again and again 
+
+	function showTime() {
+		
+
+	var date = new Date(); //Date method gives current date and time from the system
+	var h = date.getHours();
+	var m = date.getMinutes();
+	var s = date.getSeconds();
+    var session = "AM";
+
+    if(h==0){
+    	h = 12; //12 hour format
+     }
+
+     if(h>12){
+     	h = h-12; //12 hour format
+     	session = "PM"; 
+     }
+
+    //if(h<10){ //0-9
+      // h = "0"+h;
+    //}
+     //if(m<10){ //0-9
+       //m = "0"+m;
+    //}
+     //if(s<10){ //0-9
+       //s = "0"+s;
+    //}
+
+     h=(h<10)?"0"+h:h;
+     m=(m<10)?"0"+m:m;
+     s=(s<10)?"0"+s:s;
+
+	document.getElementById("DigitalClock").innerHTML = h+":"+m+":"+s+" "+session;
+	
+	setTimeout(showTime,1000); //it is pre-defined function which actually sets the time till that time it is re-runned and it is called at every 1000 ms
+
+	}
+
+//calling the function
+   showTime();
+
+</script>
+</body>
+</html>
